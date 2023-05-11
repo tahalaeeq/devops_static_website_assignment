@@ -1,27 +1,21 @@
-name: Code Quality Checks
+name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Install dependencies
-      run: |
-        npm install -g htmlhint stylelint
-        npm install --save-dev stylelint-config-standard stylelint-scss
-
     - name: HTMLHint
       run: npx htmlhint .
 
     - name: Stylelint
-      run: npx stylelint "**/*.{css,scss,js}"
+      run: npx stylelint "**/*.{css,scss}"
